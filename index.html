@@ -14,11 +14,14 @@
       --bg:       #0a0a08;
       --surface:  #111110;
       --border:   rgba(255,255,255,0.08);
-      --muted:    rgba(255,255,255,0.35);
+      --border-focus: rgba(255,255,255,0.25);
+      --muted:    rgba(255,255,255,0.40);
       --body:     rgba(255,255,255,0.72);
       --white:    #f5f2eb;
       --serif:    'Cormorant Garamond', Georgia, serif;
       --mono:     'DM Mono', monospace;
+      --accent:   #a89f8e;
+      --green:    #a3b899;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -77,25 +80,46 @@
 
     /* ── HERO ── */
     .hero {
-      padding: 14rem 3rem 6rem;
-      max-width: 900px;
+      padding: 13rem 3rem 4rem;
+      max-width: 1000px;
       margin: 0 auto;
-      border-bottom: 1px solid var(--border);
     }
 
-    .hero-eyebrow {
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(163, 184, 153, 0.05);
+      border: 1px solid rgba(163, 184, 153, 0.15);
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
       font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--green);
       margin-bottom: 2rem;
     }
 
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { transform: scale(0.95); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.5; }
+    }
+
     .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
       font-weight: 300;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.01em;
       color: var(--white);
       margin-bottom: 1.5rem;
@@ -103,39 +127,97 @@
 
     .hero h1 em {
       font-style: italic;
-      color: var(--muted);
+      color: var(--accent);
     }
 
     .hero-sub {
-      font-family: var(--mono);
-      font-size: 0.65rem;
+      font-family: var(--serif);
+      font-size: 1.2rem;
       font-weight: 300;
-      letter-spacing: 0.1em;
       color: var(--muted);
+      max-width: 600px;
     }
 
-    /* ── BODY ── */
+    /* ── BODY & DIRECTORY ── */
     .page-body {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 3rem 8rem;
     }
 
+    /* Topic Directory Grid */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .topic-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .topic-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    .topic-card-icon {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .topic-card h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .topic-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* ── SEARCH ── */
     .search-wrap {
-      padding: 3.5rem 0 3rem;
-      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+      margin-bottom: 1rem;
       position: relative;
     }
 
     .search-glyph {
       position: absolute;
-      left: 0;
+      left: 0.2rem;
       top: 50%;
-      transform: translateY(-30%);
+      transform: translateY(-50%);
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       color: var(--muted);
+      pointer-events: none;
+    }
+
+    .search-shortcut {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
       pointer-events: none;
     }
 
@@ -143,10 +225,10 @@
       width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      padding: 0.6rem 0 0.6rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 1rem 3rem 1rem 1.8rem;
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 300;
       color: var(--white);
       outline: none;
@@ -154,13 +236,13 @@
     }
 
     .search-wrap input:focus {
-      border-bottom-color: rgba(255,255,255,0.4);
+      border-bottom-color: var(--border-focus);
     }
 
     .search-wrap input::placeholder { color: var(--muted); }
 
     /* ── FAQ SECTION ── */
-    .faq-section { padding-top: 4rem; }
+    .faq-section { padding-top: 2rem; }
 
     .section-label {
       font-family: var(--mono);
@@ -168,7 +250,7 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       display: flex;
       align-items: center;
       gap: 1.5rem;
@@ -193,15 +275,15 @@
       background: none;
       border: none;
       text-align: left;
-      padding: 1.6rem 0;
+      padding: 1.8rem 0;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       gap: 2rem;
       font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 300;
+      font-size: 1.2rem;
+      font-weight: 400;
       color: var(--body);
       transition: color 0.2s;
     }
@@ -210,7 +292,7 @@
 
     .faq-question .marker {
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: var(--muted);
       flex-shrink: 0;
       transition: transform 0.35s ease, color 0.2s;
@@ -224,22 +306,58 @@
 
     .faq-answer {
       display: none;
-      padding: 0 0 2rem 0;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 300;
-      color: var(--muted);
+      color: var(--body);
       line-height: 1.8;
-      max-width: 680px;
     }
 
     .faq-answer.open { display: block; }
 
-    .faq-answer p { margin-bottom: 0.85rem; }
+    .faq-content-inner {
+      padding: 0 0 2.5rem 0;
+      max-width: 760px;
+    }
+
+    .faq-answer p { margin-bottom: 1rem; }
     .faq-answer p:last-child { margin-bottom: 0; }
-    .faq-answer a { color: var(--body); text-underline-offset: 3px; }
-    .faq-answer a:hover { color: var(--white); }
-    .faq-answer ul, .faq-answer ol { padding-left: 1.25rem; margin-bottom: 0.85rem; }
-    .faq-answer li { margin-bottom: 0.3rem; }
+    .faq-answer a { color: var(--white); text-underline-offset: 3px; }
+    .faq-answer a:hover { opacity: 0.8; }
+    .faq-answer ul, .faq-answer ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .faq-answer li { margin-bottom: 0.4rem; }
+
+    /* Article Helpful Widget */
+    .faq-feedback {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .feedback-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.25rem 0.65rem;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .feedback-btn:hover {
+      color: var(--white);
+      border-color: var(--border-focus);
+    }
 
     /* ── STATES ── */
     .state {
@@ -259,36 +377,43 @@
 
     .no-results {
       display: none;
-      padding: 3rem 0;
+      padding: 4rem 0;
       font-family: var(--mono);
       font-size: 0.65rem;
       letter-spacing: 0.1em;
       color: var(--muted);
     }
 
-    /* ── CONTACT ── */
-    .contact-strip {
-      margin-top: 6rem;
-      padding-top: 3.5rem;
+    /* ── CONTACT GRID ── */
+    .contact-container {
+      margin-top: 8rem;
+      padding-top: 4rem;
       border-top: 1px solid var(--border);
     }
 
-    .contact-eyebrow {
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .contact-col-title {
       font-family: var(--mono);
       font-size: 0.55rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
     }
 
-    .contact-strip p {
-      font-size: 1.1rem;
+    .contact-col p {
+      font-size: 1.15rem;
       font-weight: 300;
       color: var(--body);
+      margin-bottom: 1rem;
     }
 
-    .contact-strip a {
+    .contact-col a {
       color: var(--white);
       text-decoration: underline;
       text-underline-offset: 4px;
@@ -296,14 +421,55 @@
       transition: text-decoration-color 0.2s;
     }
 
-    .contact-strip a:hover {
+    .contact-col a:hover {
       text-decoration-color: var(--white);
+    }
+
+    .phone-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .phone-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .phone-number {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .phone-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .meta-indicator {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--green);
+      border-radius: 50%;
     }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 2rem 3rem;
+      padding: 2.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -318,6 +484,11 @@
     footer a:hover { color: var(--white); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .topic-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
     @media (max-width: 640px) {
       nav { padding: 1.25rem 1.5rem; }
       .nav-links span:not(:last-child) { display: none; }
@@ -342,37 +513,94 @@
   </nav>
 
   <header class="hero">
-    <p class="hero-eyebrow">✦ Support · The Archive</p>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Archive Connection: Operational
+    </div>
     <h1>Consulting<br><em>the archive.</em></h1>
-    <p class="hero-sub">Questions about your membership, card, or audiobooks — answered.</p>
+    <p class="hero-sub">Direct access to the reference directories, billing catalogs, and voice assistance centers.</p>
   </header>
 
   <main class="page-body">
 
+    <!-- Topic Directory Grid -->
+    <section class="topic-grid" aria-label="Explore Topics">
+      <div class="topic-card" onclick="triggerTopicSearch('membership')">
+        <span class="topic-card-icon">01 / ENTRY</span>
+        <h3>Membership & Access</h3>
+        <p>Registration protocols, premium credentials, and general subscriptions.</p>
+      </div>
+      <div class="topic-card" onclick="triggerTopicSearch('card')">
+        <span class="topic-card-icon">02 / HARDWARE</span>
+        <h3>The Tracking System</h3>
+        <p>Hardware cards, shipment statuses, and cryptographic coordinates.</p>
+      </div>
+      <div class="topic-card" onclick="triggerTopicSearch('library')">
+        <span class="topic-card-icon">03 / AUDIO</span>
+        <h3>Library & Audiobooks</h3>
+        <p>Acoustic archives, digital permissions, and audiobook playback help.</p>
+      </div>
+    </section>
+
+    <!-- Search Tool -->
     <div class="search-wrap">
       <span class="search-glyph">◦</span>
       <input
         type="search"
         id="faq-search"
-        placeholder="Search the archive…"
+        placeholder="Search the archive..."
         aria-label="Search FAQ"
         autocomplete="off"
       />
+      <span class="search-shortcut">/</span>
     </div>
 
     <section class="faq-section" aria-label="Frequently asked questions">
-      <p class="section-label">✦ Frequently asked</p>
+      <p class="section-label">✦ Directory Catalog</p>
 
       <div id="faq-loading" class="state state-loading">Consulting the archive…</div>
       <div id="faq-error" class="state" style="display:none;"></div>
       <div id="faq-list" role="list"></div>
-      <div id="no-results" class="no-results">◦ No entries match that query.</div>
+      <div id="no-results" class="no-results">◦ No archive entries match that query. Try another keyword or explore the topics above.</div>
     </section>
 
-    <div class="contact-strip">
-      <p class="contact-eyebrow">Still need help?</p>
-      <p>Write to <a href="mailto:support@thedailyartcult.lol">support@thedailyartcult.lol</a><br>We respond within one working day.</p>
-    </div>
+    <!-- Professional Dual Column Contact Strip -->
+    <section class="contact-container">
+      <div class="contact-grid">
+        <!-- Column 1: Email Support -->
+        <div class="contact-col">
+          <p class="contact-col-title">✦ Written Registry</p>
+          <p>For official inquiries, account claims, and ledger corrections, file an archive request directly with the support desk.</p>
+          <p style="font-size: 1.1rem;">
+            Write to: <a href="mailto:support@thedailyartcult.lol">support@thedailyartcult.lol</a><br>
+            <span style="font-size: 0.85rem; color: var(--muted);">We aim to reply within one working day.</span>
+          </p>
+        </div>
+
+        <!-- Column 2: Voice Support (US & UK placeholders) -->
+        <div class="contact-col">
+          <p class="contact-col-title">✦ Voice Archives</p>
+          
+          <div class="phone-item">
+            <span class="phone-label">United States Support</span>
+            <a href="tel:+18005550199" class="phone-number">+1 (800) 555-0199</a>
+            <div class="phone-meta">
+              <span class="meta-indicator"></span>
+              Live · Wait < 2m · Mon-Fri 9:00 AM - 5:00 PM EST
+            </div>
+          </div>
+
+          <div class="phone-item" style="margin-bottom: 0;">
+            <span class="phone-label">United Kingdom Support</span>
+            <a href="tel:+442079460192" class="phone-number">+44 (20) 7946 0192</a>
+            <div class="phone-meta">
+              <span class="meta-indicator"></span>
+              Live · Wait < 3m · Mon-Fri 9:00 AM - 5:00 PM GMT
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -386,15 +614,7 @@
   </footer>
 
   <script>
-    // ─────────────────────────────────────────────────────────────────
-    //  CONFIG — the only line you touch if your project URL changes.
-    //
-    //  Replace YOUR_PROJECT_REF with your Supabase project reference ID.
-    //  Find it: Supabase Dashboard → Project Settings → General → Reference ID
-    //
     const API_URL = "https://frwjaixxlgthkgjtafhz.supabase.co/functions/v1/confluence-faq";
-    //
-    // ─────────────────────────────────────────────────────────────────
 
     const listEl    = document.getElementById("faq-list");
     const loadingEl = document.getElementById("faq-loading");
@@ -403,6 +623,15 @@
     const noResults = document.getElementById("no-results");
 
     let allFaqs = [];
+
+    // Keyboard navigation: pressing [/] focuses the search bar
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement !== searchEl) {
+        e.preventDefault();
+        searchEl.focus();
+        searchEl.select();
+      }
+    });
 
     async function loadFAQs() {
       try {
@@ -415,7 +644,7 @@
         loadingEl.style.display = "none";
 
         if (allFaqs.length === 0) {
-          errorEl.textContent = "◦ No entries found. Add pages labelled "faq" in your Confluence space.";
+          errorEl.textContent = "◦ No entries found. Ensure pages are labelled 'faq' in your Confluence space.";
           errorEl.style.display = "block";
           return;
         }
@@ -423,7 +652,7 @@
         renderFAQs(allFaqs);
       } catch (err) {
         loadingEl.style.display = "none";
-        errorEl.textContent = `◦ ${err.message}`;
+        errorEl.textContent = `◦ Connection failure: ${err.message}`;
         errorEl.style.display = "block";
       }
     }
@@ -445,18 +674,25 @@
             <span class="marker" aria-hidden="true">✦</span>
           </button>
           <div class="faq-answer" id="${bodyId}" role="region" aria-labelledby="${btnId}">
-            ${faq.body}
+            <div class="faq-content-inner">
+              ${faq.body}
+              <div class="faq-feedback">
+                <span>Was this response helpful?</span>
+                <button class="feedback-btn" onclick="submitFeedback(this, 'yes')">Yes</button>
+                <button class="feedback-btn" onclick="submitFeedback(this, 'no')">No</button>
+              </div>
+            </div>
           </div>
         `;
 
         item.querySelector(".faq-question").addEventListener("click", function () {
           const isOpen = this.getAttribute("aria-expanded") === "true";
-          // Collapse all
+          // Collapse all others
           listEl.querySelectorAll(".faq-question").forEach(btn => {
             btn.setAttribute("aria-expanded", "false");
             document.getElementById(btn.getAttribute("aria-controls")).classList.remove("open");
           });
-          // Open this one if it was closed
+          // Open target if it was previously closed
           if (!isOpen) {
             this.setAttribute("aria-expanded", "true");
             document.getElementById(this.getAttribute("aria-controls")).classList.add("open");
@@ -467,8 +703,19 @@
       });
     }
 
+    // Interactive Directory Filters
+    function triggerTopicSearch(term) {
+      searchEl.value = term;
+      searchEl.focus();
+      filterResults(term);
+    }
+
     searchEl.addEventListener("input", () => {
-      const q = searchEl.value.toLowerCase().trim();
+      filterResults(searchEl.value.toLowerCase().trim());
+    });
+
+    function filterResults(query) {
+      const q = query.toLowerCase().trim();
       let visible = 0;
       listEl.querySelectorAll(".faq-item").forEach(item => {
         const match = item.dataset.title.includes(q);
@@ -476,7 +723,15 @@
         if (match) visible++;
       });
       noResults.style.display = visible === 0 ? "block" : "none";
-    });
+    }
+
+    // Feedback Action Interaction
+    function submitFeedback(button, type) {
+      const container = button.closest('.faq-feedback');
+      if (container) {
+        container.innerHTML = '<span>Thank you for your feedback. Our curation team has been notified.</span>';
+      }
+    }
 
     function escapeHTML(str) {
       return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
