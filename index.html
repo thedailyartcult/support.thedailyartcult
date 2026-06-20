@@ -6,72 +6,47 @@
   <meta name="description" content="Questions about your membership, card, or library — consulted and answered.">
   <title>Support · The Daily Art Cult</title>
   
-  <!-- Fonts (Matches Main Site) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Configuration (Matches Main Site Colors & Typography) -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             ink: "#070504",
-            night: "#0d0907",
-            walnut: "#1b110d",
-            leather: "#2b1913",
-            burgundy: "#4a101b",
-            emerald: "#102c26",
             cream: "#f2eadc",
             linen: "#d8cbb8",
-            smoke: "#9f9283",
-            antique: "#c6a766",
-            green: "#a3b899"
+            antique: "#c6a766"
           },
           fontFamily: {
             serif: ["Playfair Display", "Georgia", "serif"],
             sans: ["Inter", "system-ui", "sans-serif"]
-          },
-          boxShadow: {
-            soft: "0 22px 70px rgba(0, 0, 0, 0.34)",
-            glow: "0 18px 60px rgba(198, 167, 102, 0.10)"
           }
         }
       }
     };
   </script>
 
-  <!-- Custom Core Overlays -->
   <style>
     body {
       background: #1a120b;
       color: #f2eadc;
       font-family: "Inter", system-ui, sans-serif;
-      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
-
     .library-overlay {
       background:
         radial-gradient(circle at 50% 18%, rgba(70, 16, 27, 0.14), transparent 34%),
         linear-gradient(180deg, rgba(7, 5, 4, 0.50), rgba(7, 5, 4, 0.54) 52%, rgba(7, 5, 4, 0.72));
     }
-
     .quiet-panel {
       border: 1px solid rgba(242, 234, 220, 0.08);
       background: rgba(9, 6, 5, 0.58);
       backdrop-filter: blur(14px);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    
-    .quiet-panel:hover {
-      border-color: rgba(198, 167, 102, 0.25);
-    }
-
     .status-dot {
       width: 5px;
       height: 5px;
@@ -80,19 +55,17 @@
       box-shadow: 0 0 8px #c6a766;
       animation: pulse-dot 2s infinite;
     }
-
     @keyframes pulse-dot {
-      0% { transform: scale(0.95); opacity: 0.5; }
+      0%, 100% { transform: scale(0.95); opacity: 0.5; }
       50% { transform: scale(1.15); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.5; }
     }
   </style>
 </head>
 <body class="min-h-screen overflow-x-hidden relative flex flex-col justify-between">
 
-  <!-- Background Video Layers (Absolute Pathed for Subdomain Compatibility) -->
+  <!-- Background Layer -->
   <div class="fixed inset-0 -z-30 bg-[#1a120b]" aria-hidden="true">
-    <video id="background-video" class="h-full w-full scale-[1.02] object-cover opacity-95 saturate-[.9] contrast-105" autoplay muted loop playsinline preload="metadata" poster="https://thedailyartcult.lol/foster.png">
+    <video id="background-video" class="h-full w-full scale-[1.02] object-cover opacity-95 saturate-[.9]" autoplay muted loop playsinline preload="metadata" poster="https://thedailyartcult.lol/foster.png">
       <source src="https://thedailyartcult.lol/background.mp4" type="video/mp4">
     </video>
   </div>
@@ -101,59 +74,51 @@
   <!-- Header Navigation -->
   <header class="relative w-full">
     <nav class="mx-auto flex w-full max-w-7xl items-center justify-between py-6 px-5 text-sm text-linen/80">
-      <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
-        <a href="https://thedailyartcult.lol" class="site-logo font-serif text-xl font-semibold tracking-wide text-cream hover:text-antique transition-colors duration-300">The Daily Art Cult</a>
-        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
-        <a href="https://thedailyartcult.lol/#explore" class="font-sans text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300 py-1">Publishers</a>
-        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
-        <a href="https://policy.thedailyartcult.lol" class="font-sans text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300 py-1">Policy</a>
-        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
-        <a href="#" class="font-sans text-xs font-medium tracking-widest uppercase text-antique transition-colors duration-300 py-1">Support</a>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+        <a href="https://thedailyartcult.lol" class="font-serif text-xl font-semibold tracking-wide text-cream hover:text-antique transition-colors duration-300">The Daily Art Cult</a>
+        <span class="text-antique/20 select-none text-sm font-light">/</span>
+        <a href="https://thedailyartcult.lol/#explore" class="text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300">Publishers</a>
+        <span class="text-antique/20 select-none text-sm font-light">/</span>
+        <a href="https://policy.thedailyartcult.lol" class="text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300">Policy</a>
+        <span class="text-antique/20 select-none text-sm font-light">/</span>
+        <a href="#" class="text-xs font-medium tracking-widest uppercase text-antique transition-colors duration-300">Support</a>
       </div>
     </nav>
   </header>
 
-  <!-- Central Studio Workspace -->
+  <!-- Main Content Workspace -->
   <main class="flex-1 w-full relative z-10">
     
     <!-- Hero Header -->
     <section class="max-w-4xl mx-auto text-center px-5 pt-16 pb-12">
-      <div class="status-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c6a766]/20 bg-[#c6a766]/5 text-antique font-mono text-[10px] tracking-widest uppercase mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c6a766]/20 bg-[#c6a766]/5 text-antique font-mono text-[10px] tracking-widest uppercase mb-6">
         <span class="status-dot"></span>
         Archive Connection: Operational
       </div>
       <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.2] text-cream">
         Consulting the <span class="italic text-antique">archive.</span>
       </h1>
-      <p class="mt-4 text-linen/50 font-serif italic text-lg max-w-xl mx-auto">
-        Direct access to reference files, system directories, and encrypted terminal communication.
-      </p>
     </section>
 
-    <!-- Interactive Topic Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-5 mb-12" aria-label="Explore Topics">
-      <button type="button" onclick="triggerTopicSearch('membership')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
-        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">01 / SUBSCRIPTION</span>
-        <h3 class="font-serif text-lg text-cream font-medium mb-1">Membership & Access</h3>
-        <p class="text-linen/50 text-xs text-left leading-relaxed">System registration protocols, premium library credentials, and invoices.</p>
+    <!-- Quick Search Action Topics -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-5 mb-8" aria-label="Explore Topics">
+      <button type="button" onclick="triggerTopicSearch('membership')" class="group flex flex-col items-start p-5 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-wider text-antique/60 mb-2">01 / ACCESS</span>
+        <h3 class="font-serif text-base text-cream font-medium mb-1">Membership</h3>
       </button>
-      
-      <button type="button" onclick="triggerTopicSearch('card')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
-        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">02 / HARDWARE</span>
-        <h3 class="font-serif text-lg text-cream font-medium mb-1">The Tracking System</h3>
-        <p class="text-linen/50 text-xs text-left leading-relaxed">Physical membership card transits, shipping status, and maps.</p>
+      <button type="button" onclick="triggerTopicSearch('card')" class="group flex flex-col items-start p-5 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-wider text-antique/60 mb-2">02 / HARDWARE</span>
+        <h3 class="font-serif text-base text-cream font-medium mb-1">Physical Cards</h3>
       </button>
-      
-      <button type="button" onclick="triggerTopicSearch('library')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
-        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">03 / AUDIO</span>
-        <h3 class="font-serif text-lg text-cream font-medium mb-1">Library & Audiobooks</h3>
-        <p class="text-linen/50 text-xs text-left leading-relaxed">Bespoke audio editions, playback controls, and digital directory permissions.</p>
+      <button type="button" onclick="triggerTopicSearch('library')" class="group flex flex-col items-start p-5 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-wider text-antique/60 mb-2">03 / AUDIO</span>
+        <h3 class="font-serif text-base text-cream font-medium mb-1">Audiobooks</h3>
       </button>
     </section>
 
-    <!-- Search Tool (Styling matched with index.html inputs) -->
+    <!-- Unified Search Tool -->
     <section class="max-w-5xl mx-auto px-5 mb-8">
-      <div class="relative rounded-xl border border-linen/10 bg-black/40 p-1.5 focus-within:border-antique/40 transition duration-300">
+      <div class="relative rounded-xl border border-linen/10 bg-black/40 p-1 focus-within:border-antique/40 transition duration-300">
         <div class="flex items-center">
           <span class="pl-4 text-linen/40 font-mono text-sm">◦</span>
           <input
@@ -171,88 +136,55 @@
 
     <!-- FAQ Directory Display -->
     <section class="max-w-5xl mx-auto px-5 mb-16" aria-label="Frequently asked questions">
-      <p class="font-mono text-[10px] tracking-[0.25em] text-antique/50 uppercase mb-6 flex items-center gap-4">
-        ✦ Frequently consulted files
-        <span class="h-px bg-linen/10 flex-1"></span>
-      </p>
-
-      <!-- Status Containers -->
       <div id="faq-loading" class="text-center py-12 font-mono text-xs text-linen/40 uppercase tracking-widest animate-pulse">
         Consulting the archive...
       </div>
-
-      <div id="faq-error" class="hidden p-8 rounded-xl border border-burgundy/30 bg-[#160a06]/90 text-linen/70 text-sm leading-relaxed mb-6"></div>
-
+      <div id="faq-error" class="hidden p-6 rounded-xl border border-burgundy/30 bg-[#160a06]/90 text-linen/70 text-sm mb-6"></div>
       <div id="faq-list" role="list" class="space-y-1"></div>
-
       <div id="no-results" class="hidden text-center py-12 font-mono text-xs text-linen/40 uppercase tracking-widest">
-        ◦ No archive entries match that query. Try another keyword or topic card.
+        ◦ No matching archives found.
       </div>
     </section>
 
-    <!-- Unified Telemetry Channels (3-Column Layout: Email, Live Chat, Phone) -->
-    <section class="max-w-5xl mx-auto px-5 mb-24 border-t border-linen/10 pt-16">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Streamlined Contact Matrix -->
+    <section class="max-w-5xl mx-auto px-5 mb-20 border-t border-linen/10 pt-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Column 1: Email Support Card -->
-        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
-          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
+        <!-- Live Chat Card (Chatwoot Powered) -->
+        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
           <div>
-            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Direct Desk</span>
-            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Correspondence</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
-              For subscription requests, ledger modifications, and private context file claims.
-            </p>
+            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Instant Desk</span>
+            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Secure Terminal</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">Direct message line for immediate inquiries.</p>
           </div>
-          <div class="mt-6 border-t border-white/[0.05] pt-4">
-            <p class="text-[8px] text-linen/40 font-mono tracking-widest">ENVELOPE ADDRESS</p>
-            <a href="mailto:support@thedailyartcult.lol" class="font-serif text-base text-cream hover:text-antique underline transition duration-300">support@thedailyartcult.lol</a>
-          </div>
+          <button type="button" onclick="openLiveChat()" class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 border border-antique/45 rounded-lg text-xs font-mono tracking-wider uppercase text-antique hover:text-cream hover:bg-antique/10 active:scale-95 transition-all">
+            <span>●</span> Open Live Link
+          </button>
         </div>
 
-        <!-- Column 2: Live Chatwoot Integration Card -->
-        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
-          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
+        <!-- Email Card -->
+        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
           <div>
-            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Telemetry Link</span>
-            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Secure Terminal</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
-              Initiate a live digital consultation with the archival curator desk currently on duty.
-            </p>
+            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Dispatch</span>
+            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Correspondence</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">System registration requests and general ledger help.</p>
           </div>
-          <div class="mt-6 border-t border-white/[0.05] pt-4">
-            <p class="text-[8px] text-linen/40 font-mono tracking-widest mb-2">TELEMETRY ACCESS</p>
-            <button 
-              type="button" 
-              onclick="openLiveChat()" 
-              class="inline-flex items-center gap-2 px-4 py-2 border border-antique/40 rounded-lg text-xs font-mono tracking-wider uppercase text-antique hover:text-cream hover:bg-antique/10 active:scale-95 transition-all duration-200"
-            >
-              <span>●</span> Initiate Secure Link
-            </button>
-          </div>
+          <a href="mailto:support@thedailyartcult.lol" class="mt-4 block text-center font-mono text-xs text-antique border border-linen/10 rounded-lg py-2 hover:border-antique/50 hover:text-cream transition">
+            support@thedailyartcult.lol
+          </a>
         </div>
 
-        <!-- Column 3: Voice Support Card -->
-        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
-          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
+        <!-- Phone Card -->
+        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
           <div>
-            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Acoustic Channels</span>
-            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Voice Archives</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
-              Operational hotlines for immediate voice queries. Local carrier rates apply.
-            </p>
+            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Hotline</span>
+            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Voice Archives</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">Secure telephone verification options.</p>
           </div>
-          <div class="grid grid-cols-2 gap-4 mt-6 border-t border-white/[0.05] pt-4">
-            <div>
-              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">US ARCHIVE</span>
-              <a href="tel:+18005550199" class="block font-serif text-xs text-cream hover:text-antique transition mt-0.5">+1 (800) 555-0199</a>
-              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 2m · M-F</span>
-            </div>
-            <div>
-              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UK ARCHIVE</span>
-              <a href="tel:+442079460192" class="block font-serif text-xs text-cream hover:text-antique transition mt-0.5">+44 (20) 7946 0192</a>
-              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 3m · M-F</span>
-            </div>
+          <div class="mt-4 flex gap-2 justify-between border-t border-white/[0.05] pt-3 text-[10px] font-mono text-linen/60">
+            <a href="tel:+18005550199" class="hover:text-antique">US: +1 800 555-0199</a>
+            <span class="text-linen/20">|</span>
+            <a href="tel:+442079460192" class="hover:text-antique">UK: +44 20 7946 0192</a>
           </div>
         </div>
 
@@ -261,47 +193,25 @@
 
   </main>
 
-  <!-- Footer Navigation (Exact copy of index.html Footer) -->
-  <footer class="site-footer border-t border-linen/12 px-5 py-10 relative z-10">
-    <div class="mx-auto grid max-w-7xl gap-8 text-sm text-linen md:grid-cols-[1fr_auto_1fr] md:items-center">
-      <div>
-        <p class="font-serif text-xl font-semibold tracking-wide text-cream">The Daily Art Cult</p>
-        <p class="mt-2 text-linen/70">&copy; 2026 The Daily Art Cult. All rights reserved.</p>
-      </div>
-
-      <nav class="flex flex-wrap items-center justify-start gap-3 md:justify-center" aria-label="Social media">
-        <!-- X -->
-        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.903-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"/></svg>
-        </a>
-        <!-- YouTube -->
-        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <!-- LinkedIn -->
-        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </nav>
-
-      <div class="flex items-center justify-start md:justify-end">
-        <a href="https://thedailyartcult.lol/track/index.html" class="text-[10px] font-mono tracking-[0.22em] uppercase text-linen/35 hover:text-antique transition duration-300">Track My Card →</a>
-      </div>
+  <!-- Footer -->
+  <footer class="site-footer border-t border-linen/12 px-5 py-8 relative z-10">
+    <div class="mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-linen/60 max-w-7xl">
+      <p class="font-serif text-base font-semibold text-cream">The Daily Art Cult</p>
+      <p>&copy; 2026 The Daily Art Cult. All rights reserved.</p>
+      <a href="https://thedailyartcult.lol/track/index.html" class="font-mono tracking-widest uppercase hover:text-antique transition">Track My Card →</a>
     </div>
   </footer>
 
+  <!-- Clean, Functional FAQ Script -->
   <script>
     const API_URL = "https://frwjaixxlgthkgjtafhz.supabase.co/functions/v1/confluence-faq";
-
-    const listEl    = document.getElementById("faq-list");
+    const listEl = document.getElementById("faq-list");
     const loadingEl = document.getElementById("faq-loading");
-    const errorEl   = document.getElementById("faq-error");
-    const searchEl  = document.getElementById("faq-search");
+    const errorEl = document.getElementById("faq-error");
+    const searchEl = document.getElementById("faq-search");
     const noResults = document.getElementById("no-results");
-
     let allFaqs = [];
 
-    // Keyboard navigation: pressing [/] focuses the search bar
     window.addEventListener("keydown", (e) => {
       if (e.key === "/" && document.activeElement !== searchEl) {
         e.preventDefault();
@@ -315,109 +225,62 @@
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error(`${res.status}`);
         const data = await res.json();
-        if (data.error) throw new Error(data.error);
-
         allFaqs = data.faqs || [];
         loadingEl.style.display = "none";
-
-        if (allFaqs.length === 0) {
-          errorEl.textContent = "◦ No entries found. Ensure pages are labelled 'faq' in your Confluence space.";
-          errorEl.style.display = "block";
-          return;
-        }
-
         renderFAQs(allFaqs);
       } catch (err) {
         loadingEl.style.display = "none";
-        
-        let customMsg = `◦ Connection failure: ${err.message}`;
-        if (err.message.includes("401")) {
-          customMsg = `
-            <div class="space-y-4">
-              <p class="font-serif text-lg font-bold text-cream">Authentication Unsuccessful (401)</p>
-              <p class="text-xs text-linen/60 leading-relaxed">
-                The connection to your Confluence archive was rejected. This typically means the Atlassian credentials stored in your Supabase Secrets are incorrect, expired, or have invalid characters.
-              </p>
-              <div class="pt-2 border-t border-white/[0.05]">
-                <p class="text-[10px] font-mono uppercase tracking-wider text-antique mb-2">How to resolve:</p>
-                <ol class="list-decimal pl-4 space-y-2 text-xs text-linen/50 text-left">
-                  <li>Verify that <strong class="text-cream">CONFLUENCE_EMAIL</strong> is set to your exact Atlassian login email address.</li>
-                  <li>Verify that <strong class="text-cream">CONFLUENCE_API_TOKEN</strong> is a token generated at <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" class="underline text-antique">id.atlassian.com</a>. Do not use your standard login password.</li>
-                  <li>Ensure there are no trailing whitespace characters or line breaks at the end of either secret.</li>
-                  <li>After saving your secrets, try reloading this support page.</li>
-                </ol>
-              </div>
-            </div>
-          `;
-        }
-        
-        errorEl.innerHTML = customMsg;
-        errorEl.style.display = "block";
+        errorEl.textContent = `◦ Archive connection lost: ${err.message}`;
+        errorEl.classList.remove("hidden");
       }
     }
 
     function renderFAQs(faqs) {
       listEl.innerHTML = "";
       faqs.forEach((faq, i) => {
-        const item   = document.createElement("div");
+        const item = document.createElement("div");
         item.className = "faq-item border-b border-linen/10";
         item.dataset.title = faq.title.toLowerCase();
-        item.setAttribute("role", "listitem");
 
-        const btnId  = `faq-btn-${i}`;
+        const btnId = `faq-btn-${i}`;
         const bodyId = `faq-body-${i}`;
 
         item.innerHTML = `
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left hover:text-cream transition-colors group" id="${btnId}" aria-expanded="false" aria-controls="${bodyId}">
-            <span class="font-serif text-lg text-linen/85 group-hover:text-cream transition-colors">${escapeHTML(faq.title)}</span>
-            <span class="marker font-mono text-xs text-antique/60 group-hover:text-antique transition-all transform duration-300" aria-hidden="true">✦</span>
+          <button class="faq-question w-full flex justify-between items-center py-5 text-left hover:text-cream transition group" id="${btnId}" aria-expanded="false" aria-controls="${bodyId}">
+            <span class="font-serif text-base text-linen/85 group-hover:text-cream transition">${escapeHTML(faq.title)}</span>
+            <span class="marker font-mono text-[10px] text-antique/60 transform duration-300">✦</span>
           </button>
-          <div class="faq-answer hidden overflow-hidden" id="${bodyId}" role="region" aria-labelledby="${btnId}">
-            <div class="py-6 text-linen/70 font-sans text-sm leading-relaxed max-w-3xl space-y-4">
+          <div class="faq-answer hidden pb-5" id="${bodyId}" role="region">
+            <div class="text-linen/70 font-sans text-sm leading-relaxed space-y-4">
               ${faq.body}
-              <div class="faq-feedback flex items-center gap-4 pt-6 mt-6 border-t border-white/[0.04] font-mono text-[9px] uppercase tracking-wider text-linen/45">
-                <span>Was this response helpful?</span>
-                <button class="feedback-btn border border-linen/20 px-2.5 py-0.5 hover:border-antique hover:text-cream transition" onclick="submitFeedback(this, 'yes')">Yes</button>
-                <button class="feedback-btn border border-linen/20 px-2.5 py-0.5 hover:border-antique hover:text-cream transition" onclick="submitFeedback(this, 'no')">No</button>
-              </div>
             </div>
           </div>
         `;
 
         item.querySelector(".faq-question").addEventListener("click", function () {
           const isOpen = this.getAttribute("aria-expanded") === "true";
-          
-          // Collapse all others
           listEl.querySelectorAll(".faq-question").forEach(btn => {
             btn.setAttribute("aria-expanded", "false");
-            const target = document.getElementById(btn.getAttribute("aria-controls"));
-            target.classList.add("hidden");
+            document.getElementById(btn.getAttribute("aria-controls")).classList.add("hidden");
             btn.querySelector(".marker").style.transform = "rotate(0deg)";
           });
-          
-          // Toggle current one
           if (!isOpen) {
             this.setAttribute("aria-expanded", "true");
-            const target = document.getElementById(this.getAttribute("aria-controls"));
-            target.classList.remove("hidden");
+            document.getElementById(this.getAttribute("aria-controls")).classList.remove("hidden");
             this.querySelector(".marker").style.transform = "rotate(45deg)";
           }
         });
-
         listEl.appendChild(item);
       });
     }
 
-    // Topic Directory Filter Execution
     function triggerTopicSearch(term) {
       searchEl.value = term;
       searchEl.focus();
       filterResults(term);
     }
 
-    searchEl.addEventListener("input", () => {
-      filterResults(searchEl.value.toLowerCase().trim());
-    });
+    searchEl.addEventListener("input", () => filterResults(searchEl.value));
 
     function filterResults(query) {
       const q = query.toLowerCase().trim();
@@ -430,14 +293,6 @@
       noResults.style.display = visible === 0 ? "block" : "none";
     }
 
-    // Feedback Action Interaction
-    function submitFeedback(button, type) {
-      const container = button.closest('.faq-feedback');
-      if (container) {
-        container.innerHTML = '<span>Thank you for your feedback. Our curation team has been notified.</span>';
-      }
-    }
-
     function escapeHTML(str) {
       return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
     }
@@ -446,44 +301,32 @@
   </script>
 
   <!-- ========================================== -->
-  <!--        CHATWOOT INTEGRATION LOADER         -->
+  <!--             CHATWOOT INTEGRATION           -->
   <!-- ========================================== -->
-  <script id="chatwoot-loader">
-    // Optional Chatwoot configuration adjustments:
+  <script>
     window.chatwootSettings = {
-      // Set 'hideMessageBubble' to 'true' if you only want the user 
-      // to open chat using the on-page terminal button.
       hideMessageBubble: false, 
       position: 'right', 
       locale: 'en', 
-      type: 'expanded_bubble',
-      // Style overrides matching "The Daily Art Cult" aesthetic
-      darkMode: 'auto'
+      type: 'expanded_bubble'
     };
 
     (function(d,t) {
       var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      // 1. If self-hosting, replace app.chatwoot.com with your domain
       g.src="https://app.chatwoot.com/packs/js/sdk.js"; 
-      g.defer=true;
-      g.async=true;
+      g.defer=true; g.async=true;
       s.parentNode.insertBefore(g,s);
       g.onload=function(){
         window.chatwootSDK.run({
-          // 2. Insert your Chatwoot Website Inbox Token below
-          websiteToken: 'INSERT_YOUR_CHATWOOT_WEBSITE_TOKEN_HERE',
-          baseUrl: 'INSERT_YOUR_CHATWOOT_BASE_URL_HERE'
+          websiteToken: 'YOUR_CHATWOOT_WEBSITE_TOKEN', // <- Replace with your Chatwoot Website Token
+          baseUrl: 'https://app.chatwoot.com'           // <- Replace with your Chatwoot Base URL
         })
       }
     })(document,"script");
 
-    // Custom function triggered by your new live chat card
     function openLiveChat() {
       if (window.$chatwoot) {
         window.$chatwoot.toggle("open");
-      } else {
-        // Fallback warning if Chatwoot is blocked by extensions or hasn't resolved yet
-        console.warn("Secure live link is initializing.");
       }
     }
   </script>
