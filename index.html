@@ -62,9 +62,14 @@
     }
 
     .quiet-panel {
-      border: 1px solid rgba(242, 234, 220, 0.14);
+      border: 1px solid rgba(242, 234, 220, 0.08);
       background: rgba(9, 6, 5, 0.58);
       backdrop-filter: blur(14px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .quiet-panel:hover {
+      border-color: rgba(198, 167, 102, 0.25);
     }
 
     .status-dot {
@@ -121,7 +126,7 @@
         Consulting the <span class="italic text-antique">archive.</span>
       </h1>
       <p class="mt-4 text-linen/50 font-serif italic text-lg max-w-xl mx-auto">
-        Direct access to reference files, system directories, and voice assistance lines.
+        Direct access to reference files, system directories, and encrypted terminal communication.
       </p>
     </section>
 
@@ -185,46 +190,68 @@
       </div>
     </section>
 
-    <!-- Premium Voice & Email Contact (Card styles matched with index.html) -->
+    <!-- Unified Telemetry Channels (3-Column Layout: Email, Live Chat, Phone) -->
     <section class="max-w-5xl mx-auto px-5 mb-24 border-t border-linen/10 pt-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- Column 1: Email Support Card -->
-        <div class="quiet-panel p-8 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[260px]">
-          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/20 to-transparent"></div>
+        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
           <div>
             <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Direct Desk</span>
-            <h4 class="font-serif text-2xl text-cream mt-3 font-medium">Written Correspondence</h4>
+            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Correspondence</h4>
             <p class="text-linen/50 text-xs mt-2 leading-relaxed">
-              For formal subscription requests, ledger modifications, and private context file claims, contact the curation desk directly.
+              For subscription requests, ledger modifications, and private context file claims.
             </p>
           </div>
           <div class="mt-6 border-t border-white/[0.05] pt-4">
-            <p class="text-xs text-linen/40 font-mono">ENVELOPE ADDRESS</p>
-            <a href="mailto:support@thedailyartcult.lol" class="font-serif text-lg text-cream hover:text-antique underline transition duration-300">support@thedailyartcult.lol</a>
+            <p class="text-[8px] text-linen/40 font-mono tracking-widest">ENVELOPE ADDRESS</p>
+            <a href="mailto:support@thedailyartcult.lol" class="font-serif text-base text-cream hover:text-antique underline transition duration-300">support@thedailyartcult.lol</a>
           </div>
         </div>
 
-        <!-- Column 2: Voice Support Card -->
-        <div class="quiet-panel p-8 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[260px]">
-          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/20 to-transparent"></div>
+        <!-- Column 2: Live Chatwoot Integration Card -->
+        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
+          <div>
+            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Telemetry Link</span>
+            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Secure Terminal</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
+              Initiate a live digital consultation with the archival curator desk currently on duty.
+            </p>
+          </div>
+          <div class="mt-6 border-t border-white/[0.05] pt-4">
+            <p class="text-[8px] text-linen/40 font-mono tracking-widest mb-2">TELEMETRY ACCESS</p>
+            <button 
+              type="button" 
+              onclick="openLiveChat()" 
+              class="inline-flex items-center gap-2 px-4 py-2 border border-antique/40 rounded-lg text-xs font-mono tracking-wider uppercase text-antique hover:text-cream hover:bg-antique/10 active:scale-95 transition-all duration-200"
+            >
+              <span>●</span> Initiate Secure Link
+            </button>
+          </div>
+        </div>
+
+        <!-- Column 3: Voice Support Card -->
+        <div class="quiet-panel p-6 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/25 to-transparent"></div>
           <div>
             <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Acoustic Channels</span>
-            <h4 class="font-serif text-2xl text-cream mt-3 font-medium">Voice Archives</h4>
+            <h4 class="font-serif text-xl text-cream mt-2 font-medium">Voice Archives</h4>
             <p class="text-linen/50 text-xs mt-2 leading-relaxed">
-              Operational hotlines for direct voice assistance. Standard carrier rates apply.
+              Operational hotlines for immediate voice queries. Local carrier rates apply.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-4 mt-6 border-t border-white/[0.05] pt-4">
             <div>
-              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UNITED STATES</span>
-              <a href="tel:+18005550199" class="block font-serif text-sm text-cream hover:text-antique transition">+1 (800) 555-0199</a>
-              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 2m · Mon-Fri</span>
+              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">US ARCHIVE</span>
+              <a href="tel:+18005550199" class="block font-serif text-xs text-cream hover:text-antique transition mt-0.5">+1 (800) 555-0199</a>
+              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 2m · M-F</span>
             </div>
             <div>
-              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UNITED KINGDOM</span>
-              <a href="tel:+442079460192" class="block font-serif text-sm text-cream hover:text-antique transition">+44 (20) 7946 0192</a>
-              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 3m · Mon-Fri</span>
+              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UK ARCHIVE</span>
+              <a href="tel:+442079460192" class="block font-serif text-xs text-cream hover:text-antique transition mt-0.5">+44 (20) 7946 0192</a>
+              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 3m · M-F</span>
             </div>
           </div>
         </div>
@@ -416,6 +443,49 @@
     }
 
     loadFAQs();
+  </script>
+
+  <!-- ========================================== -->
+  <!--        CHATWOOT INTEGRATION LOADER         -->
+  <!-- ========================================== -->
+  <script id="chatwoot-loader">
+    // Optional Chatwoot configuration adjustments:
+    window.chatwootSettings = {
+      // Set 'hideMessageBubble' to 'true' if you only want the user 
+      // to open chat using the on-page terminal button.
+      hideMessageBubble: false, 
+      position: 'right', 
+      locale: 'en', 
+      type: 'expanded_bubble',
+      // Style overrides matching "The Daily Art Cult" aesthetic
+      darkMode: 'auto'
+    };
+
+    (function(d,t) {
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      // 1. If self-hosting, replace app.chatwoot.com with your domain
+      g.src="https://app.chatwoot.com/packs/js/sdk.js"; 
+      g.defer=true;
+      g.async=true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){
+        window.chatwootSDK.run({
+          // 2. Insert your Chatwoot Website Inbox Token below
+          websiteToken: 'INSERT_YOUR_CHATWOOT_WEBSITE_TOKEN_HERE',
+          baseUrl: 'INSERT_YOUR_CHATWOOT_BASE_URL_HERE'
+        })
+      }
+    })(document,"script");
+
+    // Custom function triggered by your new live chat card
+    function openLiveChat() {
+      if (window.$chatwoot) {
+        window.$chatwoot.toggle("open");
+      } else {
+        // Fallback warning if Chatwoot is blocked by extensions or hasn't resolved yet
+        console.warn("Secure live link is initializing.");
+      }
+    }
   </script>
 
 </body>
