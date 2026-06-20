@@ -1,112 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Questions about your membership, card, or library — consulted and answered.">
   <title>Support · The Daily Art Cult</title>
-  <meta name="description" content="Questions about your membership, card, or library — consulted and answered." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <!-- Fonts (Matches Main Site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Tailwind Configuration (Matches Main Site Colors & Typography) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#070504",
+            night: "#0d0907",
+            walnut: "#1b110d",
+            leather: "#2b1913",
+            burgundy: "#4a101b",
+            emerald: "#102c26",
+            cream: "#f2eadc",
+            linen: "#d8cbb8",
+            smoke: "#9f9283",
+            antique: "#c6a766",
+            green: "#a3b899"
+          },
+          fontFamily: {
+            serif: ["Playfair Display", "Georgia", "serif"],
+            sans: ["Inter", "system-ui", "sans-serif"]
+          },
+          boxShadow: {
+            soft: "0 22px 70px rgba(0, 0, 0, 0.34)",
+            glow: "0 18px 60px rgba(198, 167, 102, 0.10)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Core Overlays -->
   <style>
-    :root {
-      --bg:       #0a0a08;
-      --surface:  #111110;
-      --border:   rgba(255,255,255,0.08);
-      --border-focus: rgba(255,255,255,0.25);
-      --muted:    rgba(255,255,255,0.40);
-      --body:     rgba(255,255,255,0.72);
-      --white:    #f5f2eb;
-      --serif:    'Cormorant Garamond', Georgia, serif;
-      --mono:     'DM Mono', monospace;
-      --accent:   #a89f8e;
-      --green:    #a3b899;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--body);
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.7;
+      background: #1a120b;
+      color: #f2eadc;
+      font-family: "Inter", system-ui, sans-serif;
+      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.5rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,10,8,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .library-overlay {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(70, 16, 27, 0.14), transparent 34%),
+        linear-gradient(180deg, rgba(7, 5, 4, 0.50), rgba(7, 5, 4, 0.54) 52%, rgba(7, 5, 4, 0.72));
     }
 
-    .nav-brand {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--white);
-    }
-
-    .nav-links {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links span { margin: 0 0.6rem; opacity: 0.3; }
-
-    /* ── HERO ── */
-    .hero {
-      padding: 13rem 3rem 4rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(163, 184, 153, 0.05);
-      border: 1px solid rgba(163, 184, 153, 0.15);
-      padding: 0.35rem 0.8rem;
-      border-radius: 2px;
-      font-family: var(--mono);
-      font-size: 0.52rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 2rem;
+    .quiet-panel {
+      border: 1px solid rgba(242, 234, 220, 0.14);
+      background: rgba(9, 6, 5, 0.58);
+      backdrop-filter: blur(14px);
     }
 
     .status-dot {
       width: 5px;
       height: 5px;
-      background: var(--green);
+      background: #c6a766;
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--green);
+      box-shadow: 0 0 8px #c6a766;
       animation: pulse-dot 2s infinite;
     }
 
@@ -115,502 +81,186 @@
       50% { transform: scale(1.15); opacity: 1; }
       100% { transform: scale(0.95); opacity: 0.5; }
     }
-
-    .hero h1 {
-      font-size: clamp(2.6rem, 5.5vw, 4rem);
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 600px;
-    }
-
-    /* ── BODY & DIRECTORY ── */
-    .page-body {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 3rem 8rem;
-    }
-
-    /* Topic Directory Grid */
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .topic-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      cursor: pointer;
-      text-align: left;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .topic-card:hover {
-      border-color: var(--border-focus);
-      transform: translateY(-2px);
-    }
-
-    .topic-card-icon {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .topic-card h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-
-    .topic-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ── SEARCH ── */
-    .search-wrap {
-      padding: 1.5rem 0;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .search-glyph {
-      position: absolute;
-      left: 0.2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .search-shortcut {
-      position: absolute;
-      right: 0.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      color: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      pointer-events: none;
-    }
-
-    .search-wrap input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      padding: 1rem 3rem 1rem 1.8rem;
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--white);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .search-wrap input:focus {
-      border-bottom-color: var(--border-focus);
-    }
-
-    .search-wrap input::placeholder { color: var(--muted); }
-
-    /* ── FAQ SECTION ── */
-    .faq-section { padding-top: 2rem; }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── ACCORDION ── */
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-item.hidden { display: none; }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 1.8rem 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--body);
-      transition: color 0.2s;
-    }
-
-    .faq-question:hover { color: var(--white); }
-
-    .faq-question .marker {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition: transform 0.35s ease, color 0.2s;
-    }
-
-    .faq-question[aria-expanded="true"] { color: var(--white); }
-    .faq-question[aria-expanded="true"] .marker {
-      transform: rotate(45deg);
-      color: var(--white);
-    }
-
-    .faq-answer {
-      display: none;
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--body);
-      line-height: 1.8;
-    }
-
-    .faq-answer.open { display: block; }
-
-    .faq-content-inner {
-      padding: 0 0 2.5rem 0;
-      max-width: 760px;
-    }
-
-    .faq-answer p { margin-bottom: 1rem; }
-    .faq-answer p:last-child { margin-bottom: 0; }
-    .faq-answer a { color: var(--white); text-underline-offset: 3px; }
-    .faq-answer a:hover { opacity: 0.8; }
-    .faq-answer ul, .faq-answer ol { padding-left: 1.5rem; margin-bottom: 1rem; }
-    .faq-answer li { margin-bottom: 0.4rem; }
-
-    /* Article Helpful Widget */
-    .faq-feedback {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .feedback-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 0.25rem 0.65rem;
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .feedback-btn:hover {
-      color: var(--white);
-      border-color: var(--border-focus);
-    }
-
-    /* ── STATES ── */
-    .state {
-      padding: 4rem 0;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
-    .state-loading { animation: pulse 2s ease-in-out infinite; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.35; }
-      50% { opacity: 0.7; }
-    }
-
-    .no-results {
-      display: none;
-      padding: 4rem 0;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    /* ── CONTACT GRID ── */
-    .contact-container {
-      margin-top: 8rem;
-      padding-top: 4rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-    }
-
-    .contact-col-title {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-col p {
-      font-size: 1.15rem;
-      font-weight: 300;
-      color: var(--body);
-      margin-bottom: 1rem;
-    }
-
-    .contact-col a {
-      color: var(--white);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-color: var(--border);
-      transition: text-decoration-color 0.2s;
-    }
-
-    .contact-col a:hover {
-      text-decoration-color: var(--white);
-    }
-
-    .phone-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .phone-label {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .phone-number {
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      font-weight: 300;
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    .phone-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-family: var(--mono);
-      font-size: 0.52rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    .meta-indicator {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background: var(--green);
-      border-radius: 50%;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--white); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .topic-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-    }
-
-    @media (max-width: 640px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .nav-links span:not(:last-child) { display: none; }
-      .hero, .page-body { padding-left: 1.5rem; padding-right: 1.5rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-    }
   </style>
 </head>
-<body>
+<body class="min-h-screen overflow-x-hidden relative flex flex-col justify-between">
 
-  <nav>
-    <a class="nav-brand" href="https://thedailyartcult.lol">The Daily Art Cult</a>
-    <div class="nav-links">
-      <a href="https://thedailyartcult.lol">Home</a>
-      <span>/</span>
-      <a href="https://thedailyartcult.lol/#explore">Products</a>
-      <span>/</span>
-      <a href="https://thedailyartcult.lol/login/index.html">Library</a>
-      <span>/</span>
-      <a href="https://thedailyartcult.lol/track/index.html">Track Card</a>
-    </div>
-  </nav>
+  <!-- Background Video Layers (Absolute Pathed for Subdomain Compatibility) -->
+  <div class="fixed inset-0 -z-30 bg-[#1a120b]" aria-hidden="true">
+    <video id="background-video" class="h-full w-full scale-[1.02] object-cover opacity-95 saturate-[.9] contrast-105" autoplay muted loop playsinline preload="metadata" poster="https://thedailyartcult.lol/foster.png">
+      <source src="https://thedailyartcult.lol/background.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="library-overlay fixed inset-0 -z-20" aria-hidden="true"></div>
 
-  <header class="hero">
-    <div class="status-badge">
-      <span class="status-dot"></span>
-      Archive Connection: Operational
-    </div>
-    <h1>Consulting<br><em>the archive.</em></h1>
-    <p class="hero-sub">Direct access to the reference directories, billing catalogs, and voice assistance centers.</p>
+  <!-- Header Navigation -->
+  <header class="relative w-full">
+    <nav class="mx-auto flex w-full max-w-7xl items-center justify-between py-6 px-5 text-sm text-linen/80">
+      <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+        <a href="https://thedailyartcult.lol" class="site-logo font-serif text-xl font-semibold tracking-wide text-cream hover:text-antique transition-colors duration-300">The Daily Art Cult</a>
+        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
+        <a href="https://thedailyartcult.lol/#explore" class="font-sans text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300 py-1">Publishers</a>
+        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
+        <a href="https://thedailyartcult.lol/privacy/full-policy.html" class="font-sans text-xs font-medium tracking-widest uppercase text-linen/50 hover:text-antique transition-colors duration-300 py-1">Policy</a>
+        <span class="text-antique/20 select-none font-sans text-sm font-light">/</span>
+        <a href="#" class="font-sans text-xs font-medium tracking-widest uppercase text-antique transition-colors duration-300 py-1">Support</a>
+      </div>
+    </nav>
   </header>
 
-  <main class="page-body">
+  <!-- Central Studio Workspace -->
+  <main class="flex-1 w-full relative z-10">
+    
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto text-center px-5 pt-16 pb-12">
+      <div class="status-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c6a766]/20 bg-[#c6a766]/5 text-antique font-mono text-[10px] tracking-widest uppercase mb-6">
+        <span class="status-dot"></span>
+        Archive Connection: Operational
+      </div>
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.2] text-cream">
+        Consulting the <span class="italic text-antique">archive.</span>
+      </h1>
+      <p class="mt-4 text-linen/50 font-serif italic text-lg max-w-xl mx-auto">
+        Direct access to reference files, system directories, and voice assistance lines.
+      </p>
+    </section>
 
-    <!-- Topic Directory Grid -->
-    <section class="topic-grid" aria-label="Explore Topics">
-      <div class="topic-card" onclick="triggerTopicSearch('membership')">
-        <span class="topic-card-icon">01 / ENTRY</span>
-        <h3>Membership & Access</h3>
-        <p>Registration protocols, premium credentials, and general subscriptions.</p>
-      </div>
-      <div class="topic-card" onclick="triggerTopicSearch('card')">
-        <span class="topic-card-icon">02 / HARDWARE</span>
-        <h3>The Tracking System</h3>
-        <p>Hardware cards, shipment statuses, and cryptographic coordinates.</p>
-      </div>
-      <div class="topic-card" onclick="triggerTopicSearch('library')">
-        <span class="topic-card-icon">03 / AUDIO</span>
-        <h3>Library & Audiobooks</h3>
-        <p>Acoustic archives, digital permissions, and audiobook playback help.</p>
+    <!-- Interactive Topic Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-5 mb-12" aria-label="Explore Topics">
+      <button type="button" onclick="triggerTopicSearch('membership')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">01 / SUBSCRIPTION</span>
+        <h3 class="font-serif text-lg text-cream font-medium mb-1">Membership & Access</h3>
+        <p class="text-linen/50 text-xs text-left leading-relaxed">System registration protocols, premium library credentials, and invoices.</p>
+      </button>
+      
+      <button type="button" onclick="triggerTopicSearch('card')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">02 / HARDWARE</span>
+        <h3 class="font-serif text-lg text-cream font-medium mb-1">The Tracking System</h3>
+        <p class="text-linen/50 text-xs text-left leading-relaxed">Physical membership card transits, shipping status, and maps.</p>
+      </button>
+      
+      <button type="button" onclick="triggerTopicSearch('library')" class="group flex flex-col items-start p-6 rounded-xl border border-linen/10 bg-black/40 hover:border-antique/50 hover:bg-antique/5 transition-all duration-300">
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-antique/60 mb-3">03 / AUDIO</span>
+        <h3 class="font-serif text-lg text-cream font-medium mb-1">Library & Audiobooks</h3>
+        <p class="text-linen/50 text-xs text-left leading-relaxed">Bespoke audio editions, playback controls, and digital directory permissions.</p>
+      </button>
+    </section>
+
+    <!-- Search Tool (Styling matched with index.html inputs) -->
+    <section class="max-w-5xl mx-auto px-5 mb-8">
+      <div class="relative rounded-xl border border-linen/10 bg-black/40 p-1.5 focus-within:border-antique/40 transition duration-300">
+        <div class="flex items-center">
+          <span class="pl-4 text-linen/40 font-mono text-sm">◦</span>
+          <input
+            type="search"
+            id="faq-search"
+            placeholder="Search the archive..."
+            class="w-full bg-transparent text-cream px-3 py-3 text-base outline-none font-sans leading-relaxed placeholder:text-linen/25"
+            aria-label="Search FAQ"
+            autocomplete="off"
+          />
+          <span class="pr-4 text-linen/20 font-mono text-[10px] tracking-widest">[/]</span>
+        </div>
       </div>
     </section>
 
-    <!-- Search Tool -->
-    <div class="search-wrap">
-      <span class="search-glyph">◦</span>
-      <input
-        type="search"
-        id="faq-search"
-        placeholder="Search the archive..."
-        aria-label="Search FAQ"
-        autocomplete="off"
-      />
-      <span class="search-shortcut">/</span>
-    </div>
+    <!-- FAQ Directory Display -->
+    <section class="max-w-5xl mx-auto px-5 mb-16" aria-label="Frequently asked questions">
+      <p class="font-mono text-[10px] tracking-[0.25em] text-antique/50 uppercase mb-6 flex items-center gap-4">
+        ✦ Frequently consulted files
+        <span class="h-px bg-linen/10 flex-1"></span>
+      </p>
 
-    <section class="faq-section" aria-label="Frequently asked questions">
-      <p class="section-label">✦ Directory Catalog</p>
+      <!-- Status Containers -->
+      <div id="faq-loading" class="text-center py-12 font-mono text-xs text-linen/40 uppercase tracking-widest animate-pulse">
+        Consulting the archive...
+      </div>
 
-      <div id="faq-loading" class="state state-loading">Consulting the archive…</div>
-      <div id="faq-error" class="state" style="display:none;"></div>
-      <div id="faq-list" role="list"></div>
-      <div id="no-results" class="no-results">◦ No archive entries match that query. Try another keyword or explore the topics above.</div>
+      <div id="faq-error" class="hidden p-8 rounded-xl border border-burgundy/30 bg-[#160a06]/90 text-linen/70 text-sm leading-relaxed mb-6"></div>
+
+      <div id="faq-list" role="list" class="space-y-1"></div>
+
+      <div id="no-results" class="hidden text-center py-12 font-mono text-xs text-linen/40 uppercase tracking-widest">
+        ◦ No archive entries match that query. Try another keyword or topic card.
+      </div>
     </section>
 
-    <!-- Professional Dual Column Contact Strip -->
-    <section class="contact-container">
-      <div class="contact-grid">
-        <!-- Column 1: Email Support -->
-        <div class="contact-col">
-          <p class="contact-col-title">✦ Written Registry</p>
-          <p>For official inquiries, account claims, and ledger corrections, file an archive request directly with the support desk.</p>
-          <p style="font-size: 1.1rem;">
-            Write to: <a href="mailto:support@thedailyartcult.lol">support@thedailyartcult.lol</a><br>
-            <span style="font-size: 0.85rem; color: var(--muted);">We aim to reply within one working day.</span>
-          </p>
-        </div>
-
-        <!-- Column 2: Voice Support (US & UK placeholders) -->
-        <div class="contact-col">
-          <p class="contact-col-title">✦ Voice Archives</p>
-          
-          <div class="phone-item">
-            <span class="phone-label">United States Support</span>
-            <a href="tel:+18005550199" class="phone-number">+1 (800) 555-0199</a>
-            <div class="phone-meta">
-              <span class="meta-indicator"></span>
-              Live · Wait < 2m · Mon-Fri 9:00 AM - 5:00 PM EST
-            </div>
+    <!-- Premium Voice & Email Contact (Card styles matched with index.html) -->
+    <section class="max-w-5xl mx-auto px-5 mb-24 border-t border-linen/10 pt-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <!-- Column 1: Email Support Card -->
+        <div class="quiet-panel p-8 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[260px]">
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/20 to-transparent"></div>
+          <div>
+            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Direct Desk</span>
+            <h4 class="font-serif text-2xl text-cream mt-3 font-medium">Written Correspondence</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
+              For formal subscription requests, ledger modifications, and private context file claims, contact the curation desk directly.
+            </p>
           </div>
-
-          <div class="phone-item" style="margin-bottom: 0;">
-            <span class="phone-label">United Kingdom Support</span>
-            <a href="tel:+442079460192" class="phone-number">+44 (20) 7946 0192</a>
-            <div class="phone-meta">
-              <span class="meta-indicator"></span>
-              Live · Wait < 3m · Mon-Fri 9:00 AM - 5:00 PM GMT
-            </div>
+          <div class="mt-6 border-t border-white/[0.05] pt-4">
+            <p class="text-xs text-linen/40 font-mono">ENVELOPE ADDRESS</p>
+            <a href="mailto:support@thedailyartcult.lol" class="font-serif text-lg text-cream hover:text-antique underline transition duration-300">support@thedailyartcult.lol</a>
           </div>
         </div>
+
+        <!-- Column 2: Voice Support Card -->
+        <div class="quiet-panel p-8 rounded-2xl border border-linen/10 bg-black/20 text-left relative overflow-hidden flex flex-col justify-between min-h-[260px]">
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-antique/20 to-transparent"></div>
+          <div>
+            <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-antique">Acoustic Channels</span>
+            <h4 class="font-serif text-2xl text-cream mt-3 font-medium">Voice Archives</h4>
+            <p class="text-linen/50 text-xs mt-2 leading-relaxed">
+              Operational hotlines for direct voice assistance. Standard carrier rates apply.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-6 border-t border-white/[0.05] pt-4">
+            <div>
+              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UNITED STATES</span>
+              <a href="tel:+18005550199" class="block font-serif text-sm text-cream hover:text-antique transition">+1 (800) 555-0199</a>
+              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 2m · Mon-Fri</span>
+            </div>
+            <div>
+              <span class="font-mono text-[8px] uppercase tracking-wider text-linen/40">UNITED KINGDOM</span>
+              <a href="tel:+442079460192" class="block font-serif text-sm text-cream hover:text-antique transition">+44 (20) 7946 0192</a>
+              <span class="block text-[8px] font-mono text-antique/60 mt-0.5">Wait &lt; 3m · Mon-Fri</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <span>© 2026 The Daily Art Cult. All rights reserved.</span>
-    <span>
-      <a href="https://thedailyartcult.lol/privacy/full-policy.html">Privacy</a>
-      &nbsp;·&nbsp;
-      <a href="https://thedailyartcult.lol">Home</a>
-    </span>
+  <!-- Footer Navigation (Exact copy of index.html Footer) -->
+  <footer class="site-footer border-t border-linen/12 px-5 py-10 relative z-10">
+    <div class="mx-auto grid max-w-7xl gap-8 text-sm text-linen md:grid-cols-[1fr_auto_1fr] md:items-center">
+      <div>
+        <p class="font-serif text-xl font-semibold tracking-wide text-cream">The Daily Art Cult</p>
+        <p class="mt-2 text-linen/70">&copy; 2026 The Daily Art Cult. All rights reserved.</p>
+      </div>
+
+      <nav class="flex flex-wrap items-center justify-start gap-3 md:justify-center" aria-label="Social media">
+        <!-- X -->
+        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.903-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="social-link flex h-10 w-10 items-center justify-center rounded-full border border-linen/12 hover:border-antique/50 hover:text-antique transition">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </nav>
+
+      <div class="flex items-center justify-start md:justify-end">
+        <a href="https://thedailyartcult.lol/track/index.html" class="text-[10px] font-mono tracking-[0.22em] uppercase text-linen/35 hover:text-antique transition duration-300">Track My Card →</a>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -636,7 +286,7 @@
     async function loadFAQs() {
       try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(`The archive returned ${res.status}.`);
+        if (!res.ok) throw new Error(`${res.status}`);
         const data = await res.json();
         if (data.error) throw new Error(data.error);
 
@@ -652,7 +302,29 @@
         renderFAQs(allFaqs);
       } catch (err) {
         loadingEl.style.display = "none";
-        errorEl.textContent = `◦ Connection failure: ${err.message}`;
+        
+        let customMsg = `◦ Connection failure: ${err.message}`;
+        if (err.message.includes("401")) {
+          customMsg = `
+            <div class="space-y-4">
+              <p class="font-serif text-lg font-bold text-cream">Authentication Unsuccessful (401)</p>
+              <p class="text-xs text-linen/60 leading-relaxed">
+                The connection to your Confluence archive was rejected. This typically means the Atlassian credentials stored in your Supabase Secrets are incorrect, expired, or have invalid characters.
+              </p>
+              <div class="pt-2 border-t border-white/[0.05]">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-antique mb-2">How to resolve:</p>
+                <ol class="list-decimal pl-4 space-y-2 text-xs text-linen/50 text-left">
+                  <li>Verify that <strong class="text-cream">CONFLUENCE_EMAIL</strong> is set to your exact Atlassian login email address.</li>
+                  <li>Verify that <strong class="text-cream">CONFLUENCE_API_TOKEN</strong> is a token generated at <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" class="underline text-antique">id.atlassian.com</a>. Do not use your standard login password.</li>
+                  <li>Ensure there are no trailing whitespace characters or line breaks at the end of either secret.</li>
+                  <li>After saving your secrets, try reloading this support page.</li>
+                </ol>
+              </div>
+            </div>
+          `;
+        }
+        
+        errorEl.innerHTML = customMsg;
         errorEl.style.display = "block";
       }
     }
@@ -661,7 +333,7 @@
       listEl.innerHTML = "";
       faqs.forEach((faq, i) => {
         const item   = document.createElement("div");
-        item.className = "faq-item";
+        item.className = "faq-item border-b border-linen/10";
         item.dataset.title = faq.title.toLowerCase();
         item.setAttribute("role", "listitem");
 
@@ -669,17 +341,17 @@
         const bodyId = `faq-body-${i}`;
 
         item.innerHTML = `
-          <button class="faq-question" id="${btnId}" aria-expanded="false" aria-controls="${bodyId}">
-            ${escapeHTML(faq.title)}
-            <span class="marker" aria-hidden="true">✦</span>
+          <button class="faq-question w-full flex justify-between items-center py-6 text-left hover:text-cream transition-colors group" id="${btnId}" aria-expanded="false" aria-controls="${bodyId}">
+            <span class="font-serif text-lg text-linen/85 group-hover:text-cream transition-colors">${escapeHTML(faq.title)}</span>
+            <span class="marker font-mono text-xs text-antique/60 group-hover:text-antique transition-all transform duration-300" aria-hidden="true">✦</span>
           </button>
-          <div class="faq-answer" id="${bodyId}" role="region" aria-labelledby="${btnId}">
-            <div class="faq-content-inner">
+          <div class="faq-answer hidden overflow-hidden" id="${bodyId}" role="region" aria-labelledby="${btnId}">
+            <div class="py-6 text-linen/70 font-sans text-sm leading-relaxed max-w-3xl space-y-4">
               ${faq.body}
-              <div class="faq-feedback">
+              <div class="faq-feedback flex items-center gap-4 pt-6 mt-6 border-t border-white/[0.04] font-mono text-[9px] uppercase tracking-wider text-linen/45">
                 <span>Was this response helpful?</span>
-                <button class="feedback-btn" onclick="submitFeedback(this, 'yes')">Yes</button>
-                <button class="feedback-btn" onclick="submitFeedback(this, 'no')">No</button>
+                <button class="feedback-btn border border-linen/20 px-2.5 py-0.5 hover:border-antique hover:text-cream transition" onclick="submitFeedback(this, 'yes')">Yes</button>
+                <button class="feedback-btn border border-linen/20 px-2.5 py-0.5 hover:border-antique hover:text-cream transition" onclick="submitFeedback(this, 'no')">No</button>
               </div>
             </div>
           </div>
@@ -687,15 +359,21 @@
 
         item.querySelector(".faq-question").addEventListener("click", function () {
           const isOpen = this.getAttribute("aria-expanded") === "true";
+          
           // Collapse all others
           listEl.querySelectorAll(".faq-question").forEach(btn => {
             btn.setAttribute("aria-expanded", "false");
-            document.getElementById(btn.getAttribute("aria-controls")).classList.remove("open");
+            const target = document.getElementById(btn.getAttribute("aria-controls"));
+            target.classList.add("hidden");
+            btn.querySelector(".marker").style.transform = "rotate(0deg)";
           });
-          // Open target if it was previously closed
+          
+          // Toggle current one
           if (!isOpen) {
             this.setAttribute("aria-expanded", "true");
-            document.getElementById(this.getAttribute("aria-controls")).classList.add("open");
+            const target = document.getElementById(this.getAttribute("aria-controls"));
+            target.classList.remove("hidden");
+            this.querySelector(".marker").style.transform = "rotate(45deg)";
           }
         });
 
@@ -703,7 +381,7 @@
       });
     }
 
-    // Interactive Directory Filters
+    // Topic Directory Filter Execution
     function triggerTopicSearch(term) {
       searchEl.value = term;
       searchEl.focus();
