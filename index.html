@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support · The Daily Art Cult</title>
+  <meta name="description" content="Questions about your membership, card, or library — consulted and answered." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:       #0a0a08;
+      --surface:  #111110;
+      --border:   rgba(255,255,255,0.08);
+      --muted:    rgba(255,255,255,0.35);
+      --body:     rgba(255,255,255,0.72);
+      --white:    #f5f2eb;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --mono:     'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,8,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .nav-links {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links span { margin: 0 0.6rem; opacity: 0.3; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 14rem 3rem 6rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ── BODY ── */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 3rem 8rem;
+    }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      padding: 3.5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .search-glyph {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-30%);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-wrap input:focus {
+      border-bottom-color: rgba(255,255,255,0.4);
+    }
+
+    .search-wrap input::placeholder { color: var(--muted); }
+
+    /* ── FAQ SECTION ── */
+    .faq-section { padding-top: 4rem; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ACCORDION ── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item.hidden { display: none; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.6rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 2rem;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--body);
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover { color: var(--white); }
+
+    .faq-question .marker {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.35s ease, color 0.2s;
+    }
+
+    .faq-question[aria-expanded="true"] { color: var(--white); }
+    .faq-question[aria-expanded="true"] .marker {
+      transform: rotate(45deg);
+      color: var(--white);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 2rem 0;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
+    .faq-answer.open { display: block; }
+
+    .faq-answer p { margin-bottom: 0.85rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer a { color: var(--body); text-underline-offset: 3px; }
+    .faq-answer a:hover { color: var(--white); }
+    .faq-answer ul, .faq-answer ol { padding-left: 1.25rem; margin-bottom: 0.85rem; }
+    .faq-answer li { margin-bottom: 0.3rem; }
+
+    /* ── STATES ── */
+    .state {
+      padding: 4rem 0;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .state-loading { animation: pulse 2s ease-in-out infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.7; }
+    }
+
+    .no-results {
+      display: none;
+      padding: 3rem 0;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact-strip {
+      margin-top: 6rem;
+      padding-top: 3.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-strip p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--body);
+    }
+
+    .contact-strip a {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--border);
+      transition: text-decoration-color 0.2s;
+    }
+
+    .contact-strip a:hover {
+      text-decoration-color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links span:not(:last-child) { display: none; }
+      .hero, .page-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="https://thedailyartcult.lol">The Daily Art Cult</a>
+    <div class="nav-links">
+      <a href="https://thedailyartcult.lol">Home</a>
+      <span>/</span>
+      <a href="https://thedailyartcult.lol/#explore">Products</a>
+      <span>/</span>
+      <a href="https://thedailyartcult.lol/login/index.html">Library</a>
+      <span>/</span>
+      <a href="https://thedailyartcult.lol/track/index.html">Track Card</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <p class="hero-eyebrow">✦ Support · The Archive</p>
+    <h1>Consulting<br><em>the archive.</em></h1>
+    <p class="hero-sub">Questions about your membership, card, or audiobooks — answered.</p>
+  </header>
+
+  <main class="page-body">
+
+    <div class="search-wrap">
+      <span class="search-glyph">◦</span>
+      <input
+        type="search"
+        id="faq-search"
+        placeholder="Search the archive…"
+        aria-label="Search FAQ"
+        autocomplete="off"
+      />
+    </div>
+
+    <section class="faq-section" aria-label="Frequently asked questions">
+      <p class="section-label">✦ Frequently asked</p>
+
+      <div id="faq-loading" class="state state-loading">Consulting the archive…</div>
+      <div id="faq-error" class="state" style="display:none;"></div>
+      <div id="faq-list" role="list"></div>
+      <div id="no-results" class="no-results">◦ No entries match that query.</div>
+    </section>
+
+    <div class="contact-strip">
+      <p class="contact-eyebrow">Still need help?</p>
+      <p>Write to <a href="mailto:support@thedailyartcult.lol">support@thedailyartcult.lol</a><br>We respond within one working day.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>© 2026 The Daily Art Cult. All rights reserved.</span>
+    <span>
+      <a href="https://thedailyartcult.lol/privacy/full-policy.html">Privacy</a>
+      &nbsp;·&nbsp;
+      <a href="https://thedailyartcult.lol">Home</a>
+    </span>
+  </footer>
+
+  <script>
+    // ─────────────────────────────────────────────────────────────────
+    //  CONFIG — the only line you touch if your project URL changes.
+    //
+    //  Replace YOUR_PROJECT_REF with your Supabase project reference ID.
+    //  Find it: Supabase Dashboard → Project Settings → General → Reference ID
+    //
+    const API_URL = "https://YOUR_PROJECT_REF.supabase.co/functions/v1/confluence-faq";
+    //
+    // ─────────────────────────────────────────────────────────────────
+
+    const listEl    = document.getElementById("faq-list");
+    const loadingEl = document.getElementById("faq-loading");
+    const errorEl   = document.getElementById("faq-error");
+    const searchEl  = document.getElementById("faq-search");
+    const noResults = document.getElementById("no-results");
+
+    let allFaqs = [];
+
+    async function loadFAQs() {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error(`The archive returned ${res.status}.`);
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+
+        allFaqs = data.faqs || [];
+        loadingEl.style.display = "none";
+
+        if (allFaqs.length === 0) {
+          errorEl.textContent = "◦ No entries found. Add pages labelled "faq" in your Confluence space.";
+          errorEl.style.display = "block";
+          return;
+        }
+
+        renderFAQs(allFaqs);
+      } catch (err) {
+        loadingEl.style.display = "none";
+        errorEl.textContent = `◦ ${err.message}`;
+        errorEl.style.display = "block";
+      }
+    }
+
+    function renderFAQs(faqs) {
+      listEl.innerHTML = "";
+      faqs.forEach((faq, i) => {
+        const item   = document.createElement("div");
+        item.className = "faq-item";
+        item.dataset.title = faq.title.toLowerCase();
+        item.setAttribute("role", "listitem");
+
+        const btnId  = `faq-btn-${i}`;
+        const bodyId = `faq-body-${i}`;
+
+        item.innerHTML = `
+          <button class="faq-question" id="${btnId}" aria-expanded="false" aria-controls="${bodyId}">
+            ${escapeHTML(faq.title)}
+            <span class="marker" aria-hidden="true">✦</span>
+          </button>
+          <div class="faq-answer" id="${bodyId}" role="region" aria-labelledby="${btnId}">
+            ${faq.body}
+          </div>
+        `;
+
+        item.querySelector(".faq-question").addEventListener("click", function () {
+          const isOpen = this.getAttribute("aria-expanded") === "true";
+          // Collapse all
+          listEl.querySelectorAll(".faq-question").forEach(btn => {
+            btn.setAttribute("aria-expanded", "false");
+            document.getElementById(btn.getAttribute("aria-controls")).classList.remove("open");
+          });
+          // Open this one if it was closed
+          if (!isOpen) {
+            this.setAttribute("aria-expanded", "true");
+            document.getElementById(this.getAttribute("aria-controls")).classList.add("open");
+          }
+        });
+
+        listEl.appendChild(item);
+      });
+    }
+
+    searchEl.addEventListener("input", () => {
+      const q = searchEl.value.toLowerCase().trim();
+      let visible = 0;
+      listEl.querySelectorAll(".faq-item").forEach(item => {
+        const match = item.dataset.title.includes(q);
+        item.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      noResults.style.display = visible === 0 ? "block" : "none";
+    });
+
+    function escapeHTML(str) {
+      return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    loadFAQs();
+  </script>
+
+</body>
+</html>
