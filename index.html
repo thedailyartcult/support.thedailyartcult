@@ -146,50 +146,46 @@
       </div>
     </section>
 
-    <!-- Streamlined Contact Matrix -->
-    <section class="max-w-5xl mx-auto px-5 mb-20 border-t border-linen/10 pt-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Live Chat Card (Chatwoot Powered) -->
-        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
-          <div>
-            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Instant Desk</span>
-            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Secure Terminal</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">Direct message line for immediate inquiries.</p>
-          </div>
-          <button type="button" onclick="openLiveChat()" class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 border border-antique/45 rounded-lg text-xs font-mono tracking-wider uppercase text-antique hover:text-cream hover:bg-antique/10 active:scale-95 transition-all">
-            <span>●</span> Open Live Link
-          </button>
-        </div>
+<!-- Contact Section -->
+<section class="max-w-5xl mx-auto px-5 mb-20 border-t border-linen/10 pt-12">
+  <p class="font-mono text-[10px] uppercase tracking-widest text-linen/40 mb-8">Contact the team</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-linen/10 rounded-2xl overflow-hidden">
 
-        <!-- Email Card -->
-        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
-          <div>
-            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Dispatch</span>
-            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Correspondence</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">System registration requests and general ledger help.</p>
-          </div>
-          <a href="mailto:support@thedailyartcult.lol" class="mt-4 block text-center font-mono text-xs text-antique border border-linen/10 rounded-lg py-2 hover:border-antique/50 hover:text-cream transition">
-            support@thedailyartcult.lol
-          </a>
-        </div>
-
-        <!-- Phone Card -->
-        <div class="quiet-panel p-6 rounded-2xl relative flex flex-col justify-between min-h-[200px]">
-          <div>
-            <span class="font-mono text-[9px] uppercase tracking-widest text-antique">Hotline</span>
-            <h4 class="font-serif text-lg text-cream mt-1 font-medium">Voice Archives</h4>
-            <p class="text-linen/50 text-xs mt-2 leading-relaxed">Secure telephone verification options.</p>
-          </div>
-          <div class="mt-4 flex gap-2 justify-between border-t border-white/[0.05] pt-3 text-[10px] font-mono text-linen/60">
-            <a href="tel:+18005550199" class="hover:text-antique">US: +1 800 555-0199</a>
-            <span class="text-linen/20">|</span>
-            <a href="tel:+442079460192" class="hover:text-antique">UK: +44 20 7946 0192</a>
-          </div>
-        </div>
-
+    <!-- Live Chat -->
+    <div class="bg-[#0d0907] p-8 flex flex-col justify-between min-h-[220px]">
+      <div>
+        <p class="font-serif text-xl text-cream font-medium mb-2">Live Chat</p>
+        <p class="text-linen/50 text-sm leading-relaxed">Available during business hours. Typical response under two minutes.</p>
       </div>
-    </section>
+      <button type="button" onclick="openLiveChat()" class="mt-6 self-start font-mono text-xs tracking-widest uppercase text-antique border-b border-antique/40 pb-0.5 hover:border-antique hover:text-cream transition-all duration-200">
+        Start conversation →
+      </button>
+    </div>
+
+    <!-- Email -->
+    <div class="bg-[#0d0907] p-8 flex flex-col justify-between min-h-[220px]">
+      <div>
+        <p class="font-serif text-xl text-cream font-medium mb-2">Email</p>
+        <p class="text-linen/50 text-sm leading-relaxed">For membership, billing, and account questions. We respond within 24 hours.</p>
+      </div>
+      <a href="mailto:support@thedailyartcult.lol" class="mt-6 self-start font-mono text-xs tracking-widest text-antique border-b border-antique/40 pb-0.5 hover:border-antique hover:text-cream transition-all duration-200">
+        support@thedailyartcult.lol
+      </a>
+    </div>
+
+    <!-- Phone -->
+    <div class="bg-[#0d0907] p-8 flex flex-col justify-between min-h-[220px]">
+      <div>
+        <p class="font-serif text-xl text-cream font-medium mb-2">Phone</p>
+        <p class="text-linen/50 text-sm leading-relaxed">Speak directly with a member of the team. Available Monday to Friday.</p>
+      </div>
+      <a href="tel:+17163855389" class="mt-6 self-start font-mono text-xs tracking-widest text-antique border-b border-antique/40 pb-0.5 hover:border-antique hover:text-cream transition-all duration-200">
+        +1 716 385-5389
+      </a>
+    </div>
+
+  </div>
+</section>
 
   </main>
 
@@ -304,22 +300,21 @@
   <!--             CHATWOOT INTEGRATION           -->
   <!-- ========================================== -->
   <script>
-    window.chatwootSettings = {
-      hideMessageBubble: false, 
-      position: 'right', 
-      locale: 'en', 
-      type: 'expanded_bubble'
-    };
-
+window.chatwootSettings = {
+  hideMessageBubble: true,
+  position: 'right',
+  locale: 'en',
+  type: 'standard'
+};
     (function(d,t) {
       var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src="https://app.chatwoot.com/packs/js/sdk.js"; 
+g.src="https://cs.thedailyartcult.lol/packs/js/sdk.js";
       g.defer=true; g.async=true;
       s.parentNode.insertBefore(g,s);
       g.onload=function(){
         window.chatwootSDK.run({
-          websiteToken: 'YOUR_CHATWOOT_WEBSITE_TOKEN', // <- Replace with your Chatwoot Website Token
-          baseUrl: 'https://app.chatwoot.com'           // <- Replace with your Chatwoot Base URL
+          websiteToken: 'LCGdQnudzRGTJhv3whnvfzre',
+          baseUrl: 'https://cs.thedailyartcult.lol'
         })
       }
     })(document,"script");
